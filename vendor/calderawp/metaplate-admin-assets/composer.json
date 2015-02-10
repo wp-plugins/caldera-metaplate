@@ -1,0 +1,22 @@
+{
+    "name": "calderawp/metaplate-admin-assets",
+    "description": "Admin assets for Caldera Metaplate.",
+    "type": "library",
+    "keywords": [
+        "wordpress", "metaplate"
+    ],
+    "license": "GPL-2.0+",
+    "authors": [
+        {
+            "name": "David Cramer",
+            "homepage": "http://cramer.co.za",
+            "role": "Lead Developer"
+        },
+        {
+            "name": "Josh Pollock",
+            "homepage": "http://joshpress.net",
+            "email": "Josh@JoshPress.net",
+            "role" : "Developer"
+        }
+    ]
+}
