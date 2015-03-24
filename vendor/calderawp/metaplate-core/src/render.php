@@ -50,6 +50,11 @@ class render {
 
 		}
 
+		// unserilize if needed.
+		foreach( $template_data as &$meta_item ){
+			$meta_item = maybe_unserialize( $meta_item );
+		}
+	
 		// add filter.
 		$magic = new filter\magictag();
 		$content = $magic->do_magic_tag( $content );
@@ -65,17 +70,27 @@ class render {
 
 			// apply filter to data for this metaplate
 			$template_data = apply_filters( 'metaplate_data', $template_data, $metaplate );
+
 			// check CSS
-			$style_data .= $engine->render( $metaplate[ 'css' ][ 'code' ], $template_data );
-			// check JS
-			$script_data .= $engine->render( $metaplate[ 'js' ][ 'code' ] , $template_data );
+			if ( isset( $metaplate[ 'css' ][ 'code' ] )  ) {
+				$style_data .= $engine->render( $metaplate['css']['code'], $template_data );
+			} else {
+				$style_data = '';
+			}
+
+			if ( isset( $metaplate['js']['code'] )  ) {
+				// check JS
+				$script_data .= $engine->render( $metaplate['js']['code'], $template_data );
+			} else {
+				$script_data = '';
+			}
 
 			if ( ! is_null( $placement ) ) {
 				$metaplate[ 'placement' ] = $placement;
 			}
-			
+
 			if ( ! isset( $metaplate['placement'] ) || ! in_array( $metaplate['placement'], array( 'prepend', 'append', 'replace' ) ) ) {
-				$metaplate['placement'] = 'replace';
+				$metaplate['placement'] = false;
 			}
 
 			$template = $metaplate[ 'html' ][ 'code' ];
@@ -90,15 +105,20 @@ class render {
 				case 'replace':
 					$content = $engine->render( str_replace( '{{content}}', $content, $template ), $template_data );
 					break;
+				default :
+					$content = $engine->render( str_replace( '{{content}}', $content, $template ), $template_data );
 			}
+
+
 		}
 
 		// insert CSS
-		if( !empty( $style_data ) ){
+		if( ! empty( $style_data ) ){
 			$content = '<style>' . $style_data . '</style>' . $content;
 		}
+
 		// insert JS
-		if( !empty( $script_data ) ){
+		if( ! empty( $script_data ) ){
 			$content .= '<script type="text/javascript">' . $script_data . '</script>';
 		}
 
@@ -154,10 +174,12 @@ class render {
 		return  array(
 			array(
 				'name' => 'is',
-				'class' => 'calderawp\helpers\is' ),
+				'class' => 'calderawp\helpers\is'
+			),
 			array(
 				'name' => '_image',
-				'class' => 'calderawp\helpers\image' ),
+				'class' => 'calderawp\helpers\image'
+			)
 		);
 
 	}

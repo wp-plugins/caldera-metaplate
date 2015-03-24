@@ -6,5 +6,6 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    $vendorDir . '/calderawp/file-locator/src/functions.php',
     $vendorDir . '/calderawp/metaplate-core/src/functions.php',
 );

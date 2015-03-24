@@ -10,4 +10,5 @@ return array(
     'calderawp\\metaplate\\admin\\' => array($vendorDir . '/calderawp/metaplate-admin/src'),
     'calderawp\\helpers\\' => array($vendorDir . '/calderawp/wp-handlebars-helpers/src'),
     'calderawp\\filter\\' => array($vendorDir . '/calderawp/magic-tags/src'),
+    'calderawp\\file_locator\\' => array($vendorDir . '/calderawp/file-locator/src'),
 );

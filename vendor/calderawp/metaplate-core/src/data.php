@@ -35,23 +35,25 @@ class data {
 		// GET METAPLATEs
 		$metaplates = self::get_registry();
 		$meta_stack = array();
-		foreach( $metaplates as $metaplate_try ){
-			$is_plate = self::get_metaplate( $metaplate_try['id'] );
-			if( !empty( $is_plate['post_type'][$post->post_type] ) ){
-				switch ($is_plate['page_type']) {
-					case 'single':
-						if( is_single() || is_page() ){
+		if ( is_array( $metaplates ) ) {
+			foreach ( $metaplates as $metaplate_try ) {
+				$is_plate = self::get_metaplate( $metaplate_try['id'] );
+				if ( ! empty( $is_plate['post_type'][ $post->post_type ] ) ) {
+					switch ( $is_plate['page_type'] ) {
+						case 'single':
+							if ( is_single() || is_page() ) {
+								$meta_stack[] = $is_plate;
+							}
+							break;
+						case 'archive':
+							if ( ( is_archive() || is_front_page() ) && ( ! is_page() || ! is_single() ) ) {
+								$meta_stack[] = $is_plate;
+							}
+							break;
+						default:
 							$meta_stack[] = $is_plate;
-						}
-						break;
-					case 'archive':
-						if( ( is_archive() || is_front_page() ) && ( !is_page( ) || !is_single( ) ) ){
-							$meta_stack[] = $is_plate;
-						}
-						break;
-					default:
-						$meta_stack[] = $is_plate;
-						break;
+							break;
+					}
 				}
 			}
 		}
@@ -68,6 +70,9 @@ class data {
 	public static function get_custom_field_data( $post_id ) {
 
 		global $post;
+		if ( ! is_object( $post ) ) {
+			$post = get_post( $post_id );
+		}
 
 		$raw_data = get_post_meta( $post_id  );
 
