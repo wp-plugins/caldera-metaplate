@@ -1,0 +1,22 @@
+{
+    "name": "calderawp/metaplate-admin-templates",
+    "description": "Admin templates for Caldera Metaplate.",
+    "type": "library",
+    "keywords": [
+        "wordpress"
+    ],
+    "license": "GPL-2.0+",
+    "authors": [
+        {
+            "name": "David Cramer",
+            "homepage": "http://cramer.co.za",
+            "role": "Lead Developer"
+        },
+        {
+            "name": "Josh Pollock",
+            "homepage": "http://joshpress.net",
+            "email": "Josh@JoshPress.net",
+            "role" : "Developer"
+        }
+    ]
+}
