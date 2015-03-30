@@ -274,55 +274,6 @@
         ]
     },
     {
-        "name": "calderawp/magic-tags",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/CalderaWP/magic-tags.git",
-            "reference": "8242290a52a3dccfc745c8b4f7653bc46a869d18"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/CalderaWP/magic-tags/zipball/8242290a52a3dccfc745c8b4f7653bc46a869d18",
-            "reference": "8242290a52a3dccfc745c8b4f7653bc46a869d18",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.3.0"
-        },
-        "time": "2015-03-22 23:36:39",
-        "type": "library",
-        "installation-source": "source",
-        "autoload": {
-            "psr-4": {
-                "calderawp\\filter\\": "src"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "GPL-2.0+"
-        ],
-        "authors": [
-            {
-                "name": "David Cramer",
-                "homepage": "http://cramer.co.za",
-                "role": "Lead Developer"
-            },
-            {
-                "name": "Josh Pollock",
-                "email": "Josh@JoshPress.net",
-                "homepage": "http://joshpress.net",
-                "role": "Developer"
-            }
-        ],
-        "description": "Magic Tag rendering system.",
-        "keywords": [
-            "magic_tags",
-            "wordpress"
-        ]
-    },
-    {
         "name": "calderawp/metaplate-core",
         "version": "dev-master",
         "version_normalized": "9999999-dev",
@@ -375,6 +326,55 @@
         "keywords": [
             "custom-fields",
             "metaplate",
+            "wordpress"
+        ]
+    },
+    {
+        "name": "calderawp/magic-tags",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/CalderaWP/magic-tags.git",
+            "reference": "a0277e6a27db4f36c8c06508a101c7eb53043f7e"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/CalderaWP/magic-tags/zipball/a0277e6a27db4f36c8c06508a101c7eb53043f7e",
+            "reference": "a0277e6a27db4f36c8c06508a101c7eb53043f7e",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.0"
+        },
+        "time": "2015-03-28 20:33:24",
+        "type": "library",
+        "installation-source": "source",
+        "autoload": {
+            "psr-4": {
+                "calderawp\\filter\\": "src"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "GPL-2.0+"
+        ],
+        "authors": [
+            {
+                "name": "David Cramer",
+                "homepage": "http://cramer.co.za",
+                "role": "Lead Developer"
+            },
+            {
+                "name": "Josh Pollock",
+                "email": "Josh@JoshPress.net",
+                "homepage": "http://joshpress.net",
+                "role": "Developer"
+            }
+        ],
+        "description": "Magic Tag rendering system.",
+        "keywords": [
+            "magic_tags",
             "wordpress"
         ]
     }

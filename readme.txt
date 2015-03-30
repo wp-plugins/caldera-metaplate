@@ -3,7 +3,7 @@ Contributors: Desertsnowman, Shelob9
 Tags: custom fields, pods, advanced custom fields, custom field suite, templating, meta fields
 Requires at least: 3.9
 Tested up to: 4.2-alpha
-Stable tag: 0.3.0
+Stable tag: 0.3.1
 License: GPLv2+
 Donate Link: https://calderawp.com
 
@@ -59,9 +59,19 @@ Totally.
 = 0.1.1 ( January, 2015 ) =
 Initial release to WordPress.org
 
-= 0.3.0 ( March 24, 2015 )  =
-File based templating.
-New capabilities of is tag.
+= 0.2.0 =
+Bug fixes
+
+= 0.3.0 =
+Bug fixes.
+ADDED: Ability to load metaplates from file system.
+ADDED: Is conditionals for boolean template tags.
+ADDED: Fixed. Shortcodes in metaplates not working when metaplate is outputted with a shortcode. #18
+
+= 0.3.1 =
+FIXED: Busted vendor dir on WPORG. #19
+UPGRADED: magic-tags package, allowing auto-generated excerpts to be used.
+
 
 == Upgrade Notice ==
 still new, so nothing to upgrade.

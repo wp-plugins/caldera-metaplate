@@ -10,7 +10,7 @@
  * Plugin Name: Metaplate
  * Plugin URI:
  * Description: Create Meta Templates to display Custom Fields and Post Meta
- * Version:     0.3.0
+ * Version: 0.3.1
  * Author:      David
  * Author URI:
  * Text Domain: metaplate
@@ -27,21 +27,21 @@ if ( ! defined( 'WPINC' ) ) {
 /**
  * Plugin Version
  *
- * @since 0.3.0
+ * @since 1.0.0
  * @param string
  */
-define( 'MTPT_VER',  '0.3.0' );
+define( 'MTPT_VER', '0.3.1' );
 /**
  * Set paths
  *
- * @since 0.3.0
+ * @since 1.0.0
  * @param string
  */
 
 /**
  * Plugin URL
  *
- * @since 0.3.0
+ * @since 1.0.0
  * @param string
  */
 define( 'MTPT_URL',  plugin_dir_url( __FILE__ ) );
@@ -49,7 +49,7 @@ define( 'MTPT_URL',  plugin_dir_url( __FILE__ ) );
 /**
  * Root Plugin dir path
  *
- * @since 0.3.0
+ * @since 1.0.0
  * @param string
  */
 define( 'MTPT_PATH',  plugin_dir_path( __FILE__ ) );
@@ -57,7 +57,7 @@ define( 'MTPT_PATH',  plugin_dir_path( __FILE__ ) );
 /**
  * Root path to vendor dir
  *
- * @since 0.3.0
+ * @since 1.0.0
  * @param string
  */
 define( 'MTPT_VENDOR_PATH', MTPT_PATH .'vendor/' );
@@ -65,7 +65,7 @@ define( 'MTPT_VENDOR_PATH', MTPT_PATH .'vendor/' );
 /**
  * Root path to calderawp packages in vendor dir
  *
- * @since 0.3.0
+ * @since 1.0.0
  * @param string
  */
 define( 'MTPT_CALDERAWP_PATH', MTPT_VENDOR_PATH . 'calderawp/' );
