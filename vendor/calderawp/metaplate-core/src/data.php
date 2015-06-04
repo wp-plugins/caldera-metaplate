@@ -32,6 +32,8 @@ class data {
 
 		global $post;
 
+		if( empty( $post ) ){ return; } // no post - return
+
 		// GET METAPLATEs
 		$metaplates = self::get_registry();
 		$meta_stack = array();
@@ -80,9 +82,22 @@ class data {
 			return;
 
 		}
+		
+		// init the data array		
+		$template_data = array();
+
+		// add taxonomies in with a :taxonomy alias
+		$taxonomies = get_object_taxonomies( $post );
+		if( !empty( $taxonomies ) ){
+			foreach ( $taxonomies as $taxonomy_name  ) {
+
+				$taxonomy = get_taxonomy( $taxonomy_name );
+				$template_data['taxonomy'][ $taxonomy_name ] = $template_data[ $taxonomy_name ] = wp_get_post_terms( $post->ID, $taxonomy_name, array("fields" => "all") );
+
+			}
+		}
 
 		// break to standard arrays
-		$template_data = array();
 		foreach( $raw_data as $meta_key=>$meta_data ){
 			if ( 0 === strpos( $meta_key, '_' ) ) {
 				continue;

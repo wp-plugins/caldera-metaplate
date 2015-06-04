@@ -46,11 +46,11 @@
 			<h4><?php _e( 'Rendering Code', 'metaplate' ); ?> <small class="description"><?php _e( 'template tags', 'metaplate' ); ?></small></h4>
 			<div class="metaplate-config-group">
 				<label><?php _e( 'Template Function:', 'metaplate' ); ?></label>
-				<code style="display: inline-block; padding: 10px;">&lt;?php echo caldera_metaplate_render( '{{slug}}' ); ?&gt;</code></p>
+				<code style="display: inline-block; padding: 10px;">&lt;?php echo caldera_metaplate_render( '{{id}}' ); ?&gt;</code></p>
 			</div>
 			<div class="metaplate-config-group">
 				<label><?php _e( 'Shortcode:', 'metaplate' ); ?></label>
-				<code style="display: inline-block; padding: 10px;">[caldera_metaplate id="{{slug}}"]</code></p>
+				<code style="display: inline-block; padding: 10px;">[caldera_metaplate id="{{id}}"]</code></p>
 			</div>
 		{{/if}}
 
