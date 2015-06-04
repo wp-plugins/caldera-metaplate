@@ -3,7 +3,7 @@ Contributors: Desertsnowman, Shelob9
 Tags: custom fields, pods, advanced custom fields, custom field suite, templating, meta fields
 Requires at least: 3.9
 Tested up to: 4.2-alpha
-Stable tag: 0.3.1
+Stable tag: 0.4.0
 License: GPLv2+
 Donate Link: https://calderawp.com
 
@@ -14,7 +14,7 @@ Caldera Metaplate: WordPress Templating Tool For Custom Fields
 
 Caldera Metaplate, by [CalderaWP](https://CalderaWP.com) gives you a simple, handlebars.php-based, template editor for WordPress posts, including custom post types. Provides an easy way to show your custom field values with almost any theme.
 
-For more information on how to use this plugin, see: [https://calderawp.com/free-plugin/caldera-metaplate/](https://calderawp.com/free-plugin/caldera-metaplate/)
+For more information on how to use this plugin, see: [https://calderawp.com/downloads/caldera-metaplate/](https://calderawp.com/downloads/caldera-metaplate/)
 
 https://www.youtube.com/playlist?list=PLgeaHmX3MoiuxxCdHFbTFxlXlrlegBxCR
 
@@ -71,6 +71,14 @@ ADDED: Fixed. Shortcodes in metaplates not working when metaplate is outputted w
 = 0.3.1 =
 FIXED: Busted vendor dir on WPORG. #19
 UPGRADED: magic-tags package, allowing auto-generated excerpts to be used.
+
+= 0.4.0 =
+ADDED: Ability to reference taxonomies in metaplates for posts.
+FIXED: Shortcodes in metaplates loaded from files.
+FIXED: Made metaplates from files not require a post ID, which made no sense to require.
+FIXED: Issue with no saved metaplates causing an error.
+FIXED: Issue where global post was used when it was not set in some situations.
+ADDED: var_dump and sanatize helpers.
 
 
 == Upgrade Notice ==

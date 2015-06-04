@@ -82,12 +82,29 @@ class magictag {
 		if( !is_object( $post ) ){
 			return $in_params;
 		}
-
+		
+		//handle auto-generated and <!--more--> tag excerpts @since 1.1.0
 		if ( 'post_excerpt' == $field && '' == $post->post_excerpt ) {
-			add_filter( 'excerpt_more', array( $this, 'nothing' ) );
-			$excerpt = wp_trim_excerpt( $post->post_content );
-			remove_filter( 'excerpt_more', array( $this, 'nothing' ) );
+			if ( 0 < strpos( $post->post_content, '<!--more-->' ) ){
+				$excerpt = substr( $post->post_content, 0, strpos( $post->post_content, '<!--more-->') );
+			} else {
+				/**
+				 * This filer is duplicated from WordPress core to respect core setting for excerpt length.
+				 *
+				 * It is documented in wp-includes/formatting.php
+				 */
+				$excerpt_length = apply_filters( 'excerpt_length', 55 );
+				$excerpt        = wp_trim_words( $post->post_content, $excerpt_length, '' );
+			}
+
 			return $excerpt;
+
+		}
+
+		//possibly do a post_thumbnail magic tag @since 1.1.0
+		$maybe_thumbnail = $this->maybe_do_post_thumbnail( $field, $post );
+		if ( filter_var( $maybe_thumbnail, FILTER_VALIDATE_URL ) ) {
+			return $maybe_thumbnail;
 
 		}
 
@@ -266,6 +283,41 @@ class magictag {
 		}
 
 		return $ip;
+
+	}
+
+	/**
+	 * If field is "post_thumbnail" return image source URL
+	 *
+	 * Supports .size traversal
+	 *
+	 * @param string $field
+	 * @param \WP_Post|object $post Post object
+	 *
+	 * @since 1.1.0
+	 *
+	 * @return bool
+	 */
+	private function maybe_do_post_thumbnail( $field, $post ) {
+		if ( 'post_thumbnail' == $field || false !== strpos( $field, 'post_thumbnail.' ) ) {
+			$size = 'thumbnail';
+			if ( false !== ( $pos = strpos( $field, '.' ) ) ) {
+				$size = substr( $field, $pos + 1);
+			}
+
+			$id = get_post_thumbnail_id( $post->ID );
+			if ( 0 < absint( $id ) ) {
+				$img = wp_get_attachment_image_src( $id, $size);
+				if ( is_array( $img ) ) {
+					return $img[0];
+
+				}
+
+			}
+
+		}
+
+		return false;
 
 	}
 

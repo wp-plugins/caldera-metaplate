@@ -100,7 +100,7 @@ class Tests_The_Magic extends WP_UnitTestCase {
 		$this->assertSame( 'meta data is sample meta value'		, $magic->do_magic_tag( 'meta data is {post:' . $posts[0]->ID . ':sample_meta}' ) );
 		$this->assertSame( 'meta data is private meta value'	, $magic->do_magic_tag( 'meta data is {post:' . $posts[0]->ID . ':_sample_meta}' ) );
 		$this->assertSame( 'meta data is value one, value two'	, $magic->do_magic_tag( 'meta data is {post:' . $posts[0]->ID . ':array_meta}' ) );
-		$this->assertSame( 'the excerpt is '					, $magic->do_magic_tag( 'the excerpt is {post:' . $posts[0]->ID . ':post_excerpt}' ) );
+		$this->assertSame( 'the excerpt is sample content'					, $magic->do_magic_tag( 'the excerpt is {post:' . $posts[0]->ID . ':post_excerpt}' ) );
 
 		// set post global
 		$post = $posts[0];
@@ -161,7 +161,165 @@ class Tests_The_Magic extends WP_UnitTestCase {
 		$this->assertSame( '{post}'		, $magic->do_magic_tag( '{post}' ) );
 	}
 
+	/**
+	 * Test post magic tag with a custom defined excerpt
+	 *
+	 * @since 1.0.1
+	 *
+	 */
+	public function test_custom_excerpt() {
+		global $post;
+
+		//test with no post content
+		$data = array(
+			'post_excerpt' => 'lorem ipsum'
+		);
+		$id = wp_insert_post( $data, true );
+
+		$post = get_post( $id );
+		$this->assertFalse( is_a( $post, 'WP_Error' ) );
+		$magic = new \calderawp\filter\magictag();
+		$this->assertSame( 'lorem ipsum', $magic->do_magic_tag( '{post:post_excerpt}' ) );
+
+		//test with post content
+		$data = array(
+			'post_excerpt' => 'lorem ipsum',
+			'post_title'   => 'hats!'
+		);
+		$id = wp_insert_post( $data, true );
+
+		$post = get_post( $id );
+		$this->assertFalse( is_a( $post, 'WP_Error' ) );
+		$magic = new \calderawp\filter\magictag();
+		$this->assertSame( 'lorem ipsum', $magic->do_magic_tag( '{post:post_excerpt}' ) );
+
+	}
+
+	/**
+	 * Test post magic tag with an auto-defined excerpt
+	 *
+	 * @since 1.0.1
+	 *
+	 */
+	public function test_auto_excerpt() {
+		global $post;
+
+		$data = array(
+			'post_content' => 'A 1 2 3 4 5 6 7 8 9 B 1 2 3 4 5 6 7 8 9 C 1 2 3 4 5 6 7 8 9 D 1 2 3 4 5 6 7 8 9 E 1 2 3 4 5 6 7 8 9 F 1 2 3 4 NOTINEXCERPT Bad do not want to see this.'
+		);
+		$id = wp_insert_post( $data, true );
+
+		$post = get_post( $id );
+		$this->assertFalse( is_a( $post, 'WP_Error' ) );
+		$magic = new \calderawp\filter\magictag();
+		$this->assertSame( 'A 1 2 3 4 5 6 7 8 9 B 1 2 3 4 5 6 7 8 9 C 1 2 3 4 5 6 7 8 9 D 1 2 3 4 5 6 7 8 9 E 1 2 3 4 5 6 7 8 9 F 1 2 3 4', $magic->do_magic_tag( '{post:post_excerpt}' ) );
+
+
+	}
+
+	/**
+	 * Test post magic tag with a <!--more--> excerpt
+	 *
+	 * @since 1.0.1
+	 *
+	 */
+	public function test_more_tag_excerpt() {
+		global $post;
+
+		$data = array(
+			'post_content' => 'lorem ipsum<!--more-->NOTINEXCERPT'
+		);
+		$id = wp_insert_post( $data, true );
+
+		$post = get_post( $id );
+		$this->assertFalse( is_a( $post, 'WP_Error' ) );
+		$magic = new \calderawp\filter\magictag();
+		$this->assertSame( 'lorem ipsum', $magic->do_magic_tag( '{post:post_excerpt}' ) );
+
+	}
+
+	/**
+	 * Test post:post_thumbnail type magic tags
+	 *
+	 * @covers \calderawp\filter\magictag::maybe_do_post_thumbnail()
+	 *
+	 * @since 0.0.1
+	 */
+	public function test_thumbnail() {
+		$data = array(
+			'post_title' => 'hats'
+		);
+		$post_id = wp_insert_post( $data, true );
+		$filename = ( __DIR__ . '/data/run-action-banner.png' );
+		$contents = file_get_contents( $filename );
+
+		$upload = wp_upload_bits( basename( $filename ), null, $contents );
+		$this->assertTrue( empty( $upload['error'] ) );
+		$attachment_id = $this->_make_attachment( $upload, $post_id, true );
+		$thumb = wp_get_attachment_image_src( $attachment_id );
+		$medium = wp_get_attachment_image_src( $attachment_id, 'medium' );
+
+		//test default size and size traversal for a specified post
+		$magic = new \calderawp\filter\magictag();
+		$this->assertSame( $thumb[0], $magic->do_magic_tag( '{post:' . $post_id . ':post_thumbnail}' ) );
+		$this->assertSame( $medium[0], $magic->do_magic_tag( '{post:' . $post_id . ':post_thumbnail.medium}' ) );
+
+		//test default size and size traversal for global $post
+		global $post;
+		$post = get_post( $post_id );
+		$this->assertFalse( is_a( $post, 'WP_Error' ) );
+		$this->assertSame( $thumb[0], $magic->do_magic_tag( '{post:post_thumbnail}' ) );
+		$this->assertSame( $medium[0], $magic->do_magic_tag( '{post:post_thumbnail.medium}' ) );
+
+
+	}
+
+	/**
+	 * Make an attachment to test with.
+	 *
+	 * @since 0.0.1
+	 *
+	 * @param null|string $upload File to make attachment with.
+	 * @param int $parent_post_id Optional. Post to associate with.
+	 * @param bool $make_featured Optional. If true, the default, image will be set as featured of $parent_post_id
+	 *
+	 * @return int
+	 */
+	function _make_attachment( $upload, $parent_post_id = 0, $make_featured = true ) {
+
+
+		$type = '';
+		if ( !empty($upload['type']) ) {
+			$type = $upload['type'];
+		} else {
+			$mime = wp_check_filetype( $upload['file'] );
+			if ($mime)
+				$type = $mime['type'];
+		}
+
+		$attachment = array(
+			'post_title' => basename( $upload['file'] ),
+			'post_content' => '',
+			'post_type' => 'attachment',
+			'post_parent' => $parent_post_id,
+			'post_mime_type' => $type,
+			'guid' => $upload[ 'url' ],
+		);
+
+		// Save the data
+		$id = wp_insert_attachment( $attachment, $upload[ 'file' ], $parent_post_id );
+		wp_update_attachment_metadata( $id, wp_generate_attachment_metadata( $id, $upload['file'] ) );
+
+		if ( $make_featured ) {
+			set_post_thumbnail( $parent_post_id, $id );
+		}
+
+		return $id;
+
+	}
+
 }
+
 
 
 
