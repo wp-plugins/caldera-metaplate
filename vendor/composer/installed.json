@@ -1,0 +1,381 @@
+[
+    {
+        "name": "calderawp/metaplate-admin-assets",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/CalderaWP/metaplate-admin-assets.git",
+            "reference": "46a636dcef10b525e8a685e3296a0e18763f9395"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/CalderaWP/metaplate-admin-assets/zipball/46a636dcef10b525e8a685e3296a0e18763f9395",
+            "reference": "46a636dcef10b525e8a685e3296a0e18763f9395",
+            "shasum": ""
+        },
+        "time": "2014-12-05 01:48:34",
+        "type": "library",
+        "installation-source": "source",
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "GPL-2.0+"
+        ],
+        "authors": [
+            {
+                "name": "David Cramer",
+                "homepage": "http://cramer.co.za",
+                "role": "Lead Developer"
+            },
+            {
+                "name": "Josh Pollock",
+                "email": "Josh@JoshPress.net",
+                "homepage": "http://joshpress.net",
+                "role": "Developer"
+            }
+        ],
+        "description": "Admin assets for Caldera Metaplate.",
+        "keywords": [
+            "metaplate",
+            "wordpress"
+        ]
+    },
+    {
+        "name": "calderawp/metaplate-admin-templates",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/CalderaWP/metaplate-admin-templates.git",
+            "reference": "ff29449909df3a8adedb461cc53c144d5038be06"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/CalderaWP/metaplate-admin-templates/zipball/ff29449909df3a8adedb461cc53c144d5038be06",
+            "reference": "ff29449909df3a8adedb461cc53c144d5038be06",
+            "shasum": ""
+        },
+        "time": "2015-02-06 07:29:21",
+        "type": "library",
+        "installation-source": "source",
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "GPL-2.0+"
+        ],
+        "authors": [
+            {
+                "name": "David Cramer",
+                "homepage": "http://cramer.co.za",
+                "role": "Lead Developer"
+            },
+            {
+                "name": "Josh Pollock",
+                "email": "Josh@JoshPress.net",
+                "homepage": "http://joshpress.net",
+                "role": "Developer"
+            }
+        ],
+        "description": "Admin templates for Caldera Metaplate.",
+        "keywords": [
+            "wordpress"
+        ]
+    },
+    {
+        "name": "calderawp/metaplate-admin",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/CalderaWP/metaplate-admin.git",
+            "reference": "4a6f671439ec51cc19fc6f29969e93fc77f9a362"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/CalderaWP/metaplate-admin/zipball/4a6f671439ec51cc19fc6f29969e93fc77f9a362",
+            "reference": "4a6f671439ec51cc19fc6f29969e93fc77f9a362",
+            "shasum": ""
+        },
+        "require": {
+            "calderawp/metaplate-admin-assets": "dev-master",
+            "calderawp/metaplate-admin-templates": "dev-master",
+            "php": ">=5.3.0",
+            "xamin/handlebars.php": "dev-master"
+        },
+        "time": "2015-02-06 07:27:33",
+        "type": "library",
+        "installation-source": "source",
+        "autoload": {
+            "psr-4": {
+                "calderawp\\metaplate\\admin\\": "src"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "GPL-2.0+"
+        ],
+        "authors": [
+            {
+                "name": "David Cramer",
+                "homepage": "http://cramer.co.za",
+                "role": "Lead Developer"
+            },
+            {
+                "name": "Josh Pollock",
+                "email": "Josh@JoshPress.net",
+                "homepage": "http://joshpress.net",
+                "role": "Developer"
+            }
+        ],
+        "description": "Admin for Caldera Metaplate.",
+        "keywords": [
+            "wordpress"
+        ]
+    },
+    {
+        "name": "xamin/handlebars.php",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/XaminProject/handlebars.php.git",
+            "reference": "c0c58a2a858e8b4021825a86c30daaf6c9b7a092"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/XaminProject/handlebars.php/zipball/c0c58a2a858e8b4021825a86c30daaf6c9b7a092",
+            "reference": "c0c58a2a858e8b4021825a86c30daaf6c9b7a092",
+            "shasum": ""
+        },
+        "require-dev": {
+            "phpunit/phpunit": "~4.4",
+            "squizlabs/php_codesniffer": "~1.5"
+        },
+        "time": "2015-03-10 17:40:52",
+        "type": "library",
+        "installation-source": "source",
+        "autoload": {
+            "psr-0": {
+                "Handlebars": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "fzerorubigd",
+                "email": "fzerorubigd@gmail.com"
+            },
+            {
+                "name": "Behrooz Shabani (everplays)",
+                "email": "everplays@gmail.com"
+            }
+        ],
+        "description": "Handlebars processor for php",
+        "homepage": "https://github.com/XaminProject/handlebars.php"
+    },
+    {
+        "name": "calderawp/file-locator",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/CalderaWP/file-locator.git",
+            "reference": "6c3acda84a47384b33ea37bfb2c97c4ed6e09ced"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/CalderaWP/file-locator/zipball/6c3acda84a47384b33ea37bfb2c97c4ed6e09ced",
+            "reference": "6c3acda84a47384b33ea37bfb2c97c4ed6e09ced",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.0"
+        },
+        "time": "2015-03-14 21:05:26",
+        "type": "library",
+        "installation-source": "source",
+        "autoload": {
+            "psr-4": {
+                "calderawp\\file_locator\\": "src"
+            },
+            "files": [
+                "src/functions.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "GPL-2.0+"
+        ],
+        "authors": [
+            {
+                "name": "Josh Pollock",
+                "email": "Josh@JoshPress.net",
+                "homepage": "http://joshpress.net",
+                "role": "Developer"
+            }
+        ],
+        "description": "Return a file path or file contents, checking in child theme, then theme, then as an absolute file path.",
+        "keywords": [
+            "locate_template",
+            "wordpress"
+        ]
+    },
+    {
+        "name": "calderawp/wp-handlebars-helpers",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/CalderaWP/wp-handlebars-helpers.git",
+            "reference": "ac6c191d3741a2ecdfd34b5564bd2a011fc91c9d"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/CalderaWP/wp-handlebars-helpers/zipball/ac6c191d3741a2ecdfd34b5564bd2a011fc91c9d",
+            "reference": "ac6c191d3741a2ecdfd34b5564bd2a011fc91c9d",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.0",
+            "xamin/handlebars.php": "dev-master"
+        },
+        "time": "2015-03-24 08:58:32",
+        "type": "library",
+        "installation-source": "source",
+        "autoload": {
+            "psr-4": {
+                "calderawp\\helpers\\": "src"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "GPL-2.0+"
+        ],
+        "authors": [
+            {
+                "name": "David Cramer",
+                "homepage": "http://cramer.co.za",
+                "role": "Lead Developer"
+            },
+            {
+                "name": "Josh Pollock",
+                "email": "Josh@JoshPress.net",
+                "homepage": "http://joshpress.net",
+                "role": "Developer"
+            }
+        ],
+        "description": "Helpers for Handlebars.php for use in WordPress",
+        "keywords": [
+            "custom-fields",
+            "handlebars",
+            "wordpress"
+        ]
+    },
+    {
+        "name": "calderawp/magic-tags",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/CalderaWP/magic-tags.git",
+            "reference": "8242290a52a3dccfc745c8b4f7653bc46a869d18"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/CalderaWP/magic-tags/zipball/8242290a52a3dccfc745c8b4f7653bc46a869d18",
+            "reference": "8242290a52a3dccfc745c8b4f7653bc46a869d18",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.0"
+        },
+        "time": "2015-03-22 23:36:39",
+        "type": "library",
+        "installation-source": "source",
+        "autoload": {
+            "psr-4": {
+                "calderawp\\filter\\": "src"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "GPL-2.0+"
+        ],
+        "authors": [
+            {
+                "name": "David Cramer",
+                "homepage": "http://cramer.co.za",
+                "role": "Lead Developer"
+            },
+            {
+                "name": "Josh Pollock",
+                "email": "Josh@JoshPress.net",
+                "homepage": "http://joshpress.net",
+                "role": "Developer"
+            }
+        ],
+        "description": "Magic Tag rendering system.",
+        "keywords": [
+            "magic_tags",
+            "wordpress"
+        ]
+    },
+    {
+        "name": "calderawp/metaplate-core",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/CalderaWP/metaplate-core.git",
+            "reference": "12e8ca62db03496d158003635f319692143d7774"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/CalderaWP/metaplate-core/zipball/12e8ca62db03496d158003635f319692143d7774",
+            "reference": "12e8ca62db03496d158003635f319692143d7774",
+            "shasum": ""
+        },
+        "require": {
+            "calderawp/file-locator": "dev-master",
+            "calderawp/magic-tags": "dev-master",
+            "php": ">=5.3.0",
+            "xamin/handlebars.php": "dev-master"
+        },
+        "time": "2015-03-24 17:00:28",
+        "type": "library",
+        "installation-source": "source",
+        "autoload": {
+            "psr-4": {
+                "calderawp\\metaplate\\core\\": "src"
+            },
+            "files": [
+                "src/functions.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "GPL-2.0+"
+        ],
+        "authors": [
+            {
+                "name": "David Cramer",
+                "homepage": "http://cramer.co.za",
+                "role": "Lead Developer"
+            },
+            {
+                "name": "Josh Pollock",
+                "email": "Josh@JoshPress.net",
+                "homepage": "http://joshpress.net",
+                "role": "Developer"
+            }
+        ],
+        "description": "Front-end for Calera Metaplate, Handlebars.php-based custom field templating and display system.",
+        "keywords": [
+            "custom-fields",
+            "metaplate",
+            "wordpress"
+        ]
+    }
+]
