@@ -29,25 +29,39 @@ class sanitize {
 	 */
 	public static function helper( $template, $context, $args, $source ){
 
-		$postionalArgs = $args->getPositionalArguments();
-
-		$tmp = $context->get($postionalArgs[0]);
-		
-		$func = 'sanitize_text_field';
+		$postionalArgs = $template->parseArguments($args);
 
 		if( isset( $postionalArgs[1] ) ){
-			if( is_object( $postionalArgs[1] ) ){
-				$func = $context->get($postionalArgs[1]);
-			}else{
-				$func = $postionalArgs[1];	
+			$func = $postionalArgs[1];
+			$arg = $postionalArgs[0];
+			if( is_object( $arg ) ){
+				$arg = $context->get( $arg );
 			}
+		}else{
+			$func = $postionalArgs[0];
 		}
 		
-		if( !empty( $func ) && function_exists( $func )){
-			return $func( $tmp );
+		if( is_object( $func ) ){
+			$func = $context->get( $func );
+		}else{
+			$func = $func;	
 		}
 
-		return $tmp;
+		if( !empty( $func ) && function_exists( $func )){
+			ob_start();
+			if( isset( $arg ) ){
+				$output = $func( $arg );
+			}else{
+				$output = $func();
+			}
+			$has_output = ob_get_clean();
+			if( !empty( $has_output ) && !is_bool( $has_output ) ){
+				return $has_output;
+			}
+			return $output;
+		}
+
+		return $arg;
 
 	}
 

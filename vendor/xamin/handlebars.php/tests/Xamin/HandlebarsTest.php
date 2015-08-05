@@ -176,7 +176,7 @@ class HandlebarsTest extends \PHPUnit_Framework_TestCase
                 '{{#if first}}The first{{else}}{{#if second}}The second{{/if}}{{/if}}',
                 array('first' => false, 'second' => true),
                 'The second'
-            )
+            ),
         );
     }
 
@@ -454,14 +454,6 @@ class HandlebarsTest extends \PHPUnit_Framework_TestCase
         $engine->getHelpers()->call('invalid', $engine->loadTemplate(''), new \Handlebars\Context(), '', '');
     }
 
-    public function testInvalidHelperMustacheStyle()
-    {
-        $this->setExpectedException('RuntimeException');
-        $loader = new \Handlebars\Loader\StringLoader();
-        $engine = new \Handlebars\Handlebars(array('loader' => $loader));
-        $engine->render('{{#NOTVALID}}XXX{{/NOTVALID}}', array());
-    }
-
     public function testInvalidHelper()
     {
         $this->setExpectedException('RuntimeException');
@@ -479,6 +471,7 @@ class HandlebarsTest extends \PHPUnit_Framework_TestCase
         $engine = new \Handlebars\Handlebars(array('loader' => $loader));
         $this->assertEquals('yes', $engine->render('{{#x}}yes{{/x}}', array('x' => true)));
         $this->assertEquals('', $engine->render('{{#x}}yes{{/x}}', array('x' => false)));
+        $this->assertEquals('', $engine->render('{{#NOTVALID}}XXX{{/NOTVALID}}', array()));
         $this->assertEquals('yes', $engine->render('{{^x}}yes{{/x}}', array('x' => false)));
         $this->assertEquals('', $engine->render('{{^x}}yes{{/x}}', array('x' => true)));
         $this->assertEquals('1234', $engine->render('{{#x}}{{this}}{{/x}}', array('x' => array(1, 2, 3, 4))));
@@ -715,7 +708,11 @@ EOM;
     public function testPartial()
     {
         $loader = new \Handlebars\Loader\StringLoader();
-        $partialLoader = new \Handlebars\Loader\ArrayLoader(array('test' => '{{key}}', 'bar' => 'its foo'));
+        $partialLoader = new \Handlebars\Loader\ArrayLoader(array(
+            'test' => '{{key}}',
+            'bar' => 'its foo',
+            'presetVariables' => '{{myVar}}',
+        ));
         $partialAliasses = array('foo' => 'bar');
         $engine = new \Handlebars\Handlebars(
             array(
@@ -724,6 +721,11 @@ EOM;
                 'partials_alias' => $partialAliasses
             )
         );
+
+        $this->assertEquals('foobar', $engine->render("{{>presetVariables myVar='foobar'}}", array()));
+        $this->assertEquals('foobar=barbaz', $engine->render("{{>presetVariables myVar='foobar=barbaz'}}", array()));
+        $this->assertEquals('qux', $engine->render("{{>presetVariables myVar=foo}}", array('foo' => 'qux')));
+        $this->assertEquals('qux', $engine->render("{{>presetVariables myVar=foo.bar}}", array('foo' => array('bar' => 'qux'))));
 
         $this->assertEquals('HELLO', $engine->render('{{>test parameter}}', array('parameter' => array('key' => 'HELLO'))));
         $this->assertEquals('its foo', $engine->render('{{>foo}}', array()));
@@ -756,6 +758,9 @@ EOM;
         $this->assertEquals('var-x', $engine->render('{{#with var.y}}{{../var.x}}{{/with}}', array('var' => $var)));
         // Reference array as string
         $this->assertEquals('Array', $engine->render('{{var}}', array('var' => array('test'))));
+
+        // Test class with __toString method
+        $this->assertEquals('test', $engine->render('{{var}}', array('var' => new TestClassWithToStringMethod())));
 
         $obj = new DateTime();
         $time = $obj->getTimestamp();
@@ -1268,6 +1273,12 @@ EOM;
         $this->assertEquals($res, $results);
     }
 
+}
+
+class TestClassWithToStringMethod {
+    public function __toString() {
+        return 'test';
+    }
 }
 
 /**

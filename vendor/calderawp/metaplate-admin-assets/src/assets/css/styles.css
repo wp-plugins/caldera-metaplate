@@ -44,7 +44,22 @@ h4 > small.description {
   opacity: 0.2;
   padding: 0 15px 0 0;
 }
+.metaplate-main-header .error_notice_box,
+.metaplate-main-header .updated_notice_box {
+  background: #fff;
+  border-left: 8px solid rgb(175, 175, 0);
+  color: #333;
+  display: inline-block;
+  padding: 20px 23px 15px 12px;
+  position: absolute;
+  top: -75px;
+  left: 0;
+  box-shadow: 0 3px 5px rgba(0,0,0,0.2);
+}
 
+.metaplate-main-header .error_notice_box{
+  border-left: 8px solid rgb(175, 0, 0);
+}
 .wrap .metaplate-main-header .add-new-h2{
 	font-size: 12px;
 	margin: 13px;
@@ -237,4 +252,5 @@ h4 > small.description {
 }
 #metaplate-save-indicator.loading .spinner{
   display: block;
+  visibility: visible;
 }

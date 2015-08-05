@@ -5,11 +5,30 @@ var metaplate_canvas = false,
 	mtpt_get_default_setting,
 	mtpt_code_editor,
 	init_magic_tags,
+	mtpt_handle_save,
 	mtpt_rebuild_magics,
 	config_object = {},
 	magic_tags = [];
 
 jQuery( function($){
+
+	mtpt_handle_save = function( obj ){
+
+		var notice;
+
+		if( obj.data.success ){
+			notice = $('.updated_notice_box');
+		}else{
+			notice = $('.error_notice_box');
+		}
+
+		notice.stop().animate({top: -5}, 200, function(){
+			setTimeout( function(){
+				notice.stop().animate({top: -75}, 200);
+			}, 2000);
+		});
+
+	}
 
 	init_magic_tags = function(){
 		//init magic tags

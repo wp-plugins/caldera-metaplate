@@ -23,6 +23,7 @@
  */
 
 namespace Handlebars;
+use Handlebars\Arguments;
 
 /**
  * Handlebars base template
@@ -31,6 +32,7 @@ namespace Handlebars;
  * @category  Xamin
  * @package   Handlebars
  * @author    fzerorubigd <fzerorubigd@gmail.com>
+ * @author    Pascal Thormeier <pascal.thormeier@gmail.com>
  * @copyright 2010-2012 (c) Justin Hileman
  * @copyright 2012 (c) ParsPooyesh Co
  * @license   MIT <http://opensource.org/licenses/MIT>
@@ -402,10 +404,13 @@ class Template
         // fallback to mustache style each/with/for just if there is
         // no argument at all.
         try {
-            $sectionVar = $context->get($sectionName, true);
+            $sectionVar = $context->get($sectionName, false);
         } catch (\InvalidArgumentException $e) {
             throw new \RuntimeException(
-                $sectionName . ' is not registered as a helper'
+                sprintf(
+                    '"%s" is not registered as a helper',
+                    $sectionName
+                )
             );
         }
         $buffer = '';
@@ -462,7 +467,10 @@ class Template
             return $this->_mustacheStyleSection($context, $current);
         } else {
             throw new \RuntimeException(
-                $sectionName . ' is not registered as a helper'
+                sprintf(
+                    '"%s"" is not registered as a helper',
+                    $sectionName
+                )
             );
         }
     }
@@ -500,10 +508,42 @@ class Template
         $partial = $this->handlebars->loadPartial($current[Tokenizer::NAME]);
 
         if ($current[Tokenizer::ARGS]) {
-            $context = $context->get($current[Tokenizer::ARGS]);
+            $arguments = new Arguments($current[Tokenizer::ARGS]);
+
+            $context = new Context($this->_preparePartialArguments($context, $arguments));
         }
 
         return $partial->render($context);
+    }
+
+    /**
+     * Prepare the arguments of a partial to actual array values to be used in a new context
+     *
+     * @param Context   $context   Current context
+     * @param Arguments $arguments Arguments for partial
+     *
+     * @return array
+     */
+    private function _preparePartialArguments(Context $context, Arguments $arguments)
+    {
+        $positionalArgs = array();
+        foreach ($arguments->getPositionalArguments() as $positionalArg) {
+            $contextArg = $context->get($positionalArg);
+            if (is_array($contextArg)) {
+                foreach ($contextArg as $key => $value) {
+                    $positionalArgs[$key] = $value;
+                }
+            } else {
+                $positionalArgs[$positionalArg] = $contextArg;
+            }
+        }
+
+        $namedArguments = array();
+        foreach ($arguments->getNamedArguments() as $key => $value) {
+            $namedArguments[$key] = $context->get($value);
+        }
+
+        return array_merge($positionalArgs, $namedArguments);
     }
 
 
@@ -591,14 +631,14 @@ class Template
         }
         if ($escaped) {
             $args = $this->handlebars->getEscapeArgs();
-            array_unshift($args, $value);
+            array_unshift($args, (string)$value);
             $value = call_user_func_array(
                 $this->handlebars->getEscape(),
                 array_values($args)
             );
         }
 
-        return $value;
+        return (string)$value;
     }
 
     /**

@@ -1,8 +1,15 @@
 <div class="metaplate-main-header">
 		<h2>
 		<span id="metaplate-name-title">{{name}}</span> <span class="metaplate-subline">{{slug}}</span>
-		<span class="add-new-h2 wp-baldrick" data-action="mtpt_save_config" data-load-element="#metaplate-save-indicator" data-before="mtpt_get_config_object" ><?php _e('Save Changes', 'metaplate') ; ?></span>
+		<span class="add-new-h2 wp-baldrick" data-action="mtpt_save_config" data-load-element="#metaplate-save-indicator" data-before="mtpt_get_config_object" data-callback="mtpt_handle_save" ><?php _e('Save Changes', 'metaplate') ; ?></span>
 	</h2>
+	<div class="updated_notice_box">
+		<?php _e( 'Updated Successfully', 'metaplate' ); ?>
+	</div>
+	<div class="error_notice_box">
+		<?php _e( 'Could not save changes. Try again.', 'metaplate' ); ?>
+	</div>
+
 	<ul class="metaplate-header-tabs metaplate-nav-tabs">
 				
 		

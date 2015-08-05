@@ -6,19 +6,19 @@
         "source": {
             "type": "git",
             "url": "https://github.com/XaminProject/handlebars.php.git",
-            "reference": "8f9d0e5fef6b4e2a21c61eab24c58f6e50175275"
+            "reference": "a47d7e0fb26d1da08475c1ffa40a86159a78ba69"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/XaminProject/handlebars.php/zipball/8f9d0e5fef6b4e2a21c61eab24c58f6e50175275",
-            "reference": "8f9d0e5fef6b4e2a21c61eab24c58f6e50175275",
+            "url": "https://api.github.com/repos/XaminProject/handlebars.php/zipball/a47d7e0fb26d1da08475c1ffa40a86159a78ba69",
+            "reference": "a47d7e0fb26d1da08475c1ffa40a86159a78ba69",
             "shasum": ""
         },
         "require-dev": {
             "phpunit/phpunit": "~4.4",
             "squizlabs/php_codesniffer": "~1.5"
         },
-        "time": "2015-06-02 07:40:53",
+        "time": "2015-07-14 18:08:50",
         "type": "library",
         "installation-source": "source",
         "autoload": {
@@ -50,19 +50,19 @@
         "source": {
             "type": "git",
             "url": "https://github.com/CalderaWP/wp-handlebars-helpers.git",
-            "reference": "8e1349109e3178329f14a3deefc0e45369966547"
+            "reference": "d3067260e2f3a1c47b39dfd31c0caede0f7813f0"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/CalderaWP/wp-handlebars-helpers/zipball/8e1349109e3178329f14a3deefc0e45369966547",
-            "reference": "8e1349109e3178329f14a3deefc0e45369966547",
+            "url": "https://api.github.com/repos/CalderaWP/wp-handlebars-helpers/zipball/d3067260e2f3a1c47b39dfd31c0caede0f7813f0",
+            "reference": "d3067260e2f3a1c47b39dfd31c0caede0f7813f0",
             "shasum": ""
         },
         "require": {
             "php": ">=5.3.0",
             "xamin/handlebars.php": "dev-master"
         },
-        "time": "2015-04-21 08:29:08",
+        "time": "2015-08-05 07:03:36",
         "type": "library",
         "installation-source": "source",
         "autoload": {
@@ -148,18 +148,18 @@
         "source": {
             "type": "git",
             "url": "https://github.com/CalderaWP/magic-tags.git",
-            "reference": "e822d907419812e67420bf0ae373eda9732be066"
+            "reference": "98a84b61de00f9bc7355ffa7b629c7d52897dc91"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/CalderaWP/magic-tags/zipball/e822d907419812e67420bf0ae373eda9732be066",
-            "reference": "e822d907419812e67420bf0ae373eda9732be066",
+            "url": "https://api.github.com/repos/CalderaWP/magic-tags/zipball/98a84b61de00f9bc7355ffa7b629c7d52897dc91",
+            "reference": "98a84b61de00f9bc7355ffa7b629c7d52897dc91",
             "shasum": ""
         },
         "require": {
             "php": ">=5.3.0"
         },
-        "time": "2015-04-24 20:19:24",
+        "time": "2015-06-28 00:29:47",
         "type": "library",
         "installation-source": "source",
         "autoload": {
@@ -197,12 +197,12 @@
         "source": {
             "type": "git",
             "url": "https://github.com/CalderaWP/metaplate-core.git",
-            "reference": "883e93d219b8e0a164c75d7324b355eb64ba145f"
+            "reference": "6dae860529871a26b67327361e4696b2d2ac3fb0"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/CalderaWP/metaplate-core/zipball/883e93d219b8e0a164c75d7324b355eb64ba145f",
-            "reference": "883e93d219b8e0a164c75d7324b355eb64ba145f",
+            "url": "https://api.github.com/repos/CalderaWP/metaplate-core/zipball/6dae860529871a26b67327361e4696b2d2ac3fb0",
+            "reference": "6dae860529871a26b67327361e4696b2d2ac3fb0",
             "shasum": ""
         },
         "require": {
@@ -212,7 +212,7 @@
             "php": ">=5.3.0",
             "xamin/handlebars.php": "dev-master"
         },
-        "time": "2015-04-22 01:24:25",
+        "time": "2015-07-30 14:20:15",
         "type": "library",
         "installation-source": "source",
         "autoload": {
