@@ -33,10 +33,7 @@ class sanitize {
 
 		if( isset( $postionalArgs[1] ) ){
 			$func = $postionalArgs[1];
-			$arg = $postionalArgs[0];
-			if( is_object( $arg ) ){
-				$arg = $context->get( $arg );
-			}
+			$arg = $context->get( $postionalArgs[0] );
 		}else{
 			$func = $postionalArgs[0];
 		}
